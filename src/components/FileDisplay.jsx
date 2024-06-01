@@ -14,7 +14,7 @@ const FileDisplay = ({ file, audioStream, handleAudioReset }) => {
 
 			<div className="flex items-center justify-between gap-4 font-medium mt-4">
 				<button
-					className="text-black py-2 px-4 rounded-xl border-2 border-black bg-white duration-200 hover:bg-black/80 hover:text-white"
+					className="text-black py-2 px-4 rounded-xl border-2 border-solid border-black bg-white duration-200 hover:bg-black/80 hover:text-white"
 					onClick={handleAudioReset}
 				>
 					Reset
