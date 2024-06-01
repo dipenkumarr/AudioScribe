@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Transcription from "./Transcription";
+import Translation from "./Translation";
 
 const Information = () => {
 	const [tab, setTab] = useState("transcription");
@@ -34,6 +36,8 @@ const Information = () => {
 					Translation
 				</button>
 			</div>
+
+			{tab === "transcription" ? <Transcription /> : <Translation />}
 		</main>
 	);
 };
