@@ -15,7 +15,7 @@ const HomePage = ({ setFile, setAudioStream }) => {
 		console.log("Start Recording");
 
 		try {
-			const streamData = navigator.mediaDevices.getUserMedia({
+			const streamData = await navigator.mediaDevices.getUserMedia({
 				audio: true,
 				video: false,
 			});
@@ -71,7 +71,7 @@ const HomePage = ({ setFile, setAudioStream }) => {
 	});
 
 	return (
-		<main className="flex-1 p-4 flex  text-center flex-col gap-3 sm:gap-4 md:gap-5 justify-center pb-40">
+		<main className="flex-1 p-4 flex  text-center flex-col gap-3 sm:gap-4 justify-center pb-40">
 			<h1 className="font-semibold text-5xl sm:text-6xl md:text-7xl">
 				Audio<span className="text-blue-600 bold">Scribe.</span>
 			</h1>

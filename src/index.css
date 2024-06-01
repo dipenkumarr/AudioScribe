@@ -19,5 +19,6 @@ h3,
 	transition: 200ms;
 }
 .btn:hover {
-	opacity: 0.8;
+	opacity: 0.9;
+	box-shadow: 0px 14px 55px rgba(96, 155, 255, 1);
 }
