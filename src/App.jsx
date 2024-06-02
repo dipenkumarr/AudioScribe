@@ -5,6 +5,8 @@ import FileDisplay from "./components/FileDisplay";
 import Information from "./components/Information";
 import Transcribing from "./components/Transcribing";
 import { MessageTypes } from "./utils/presets";
+import Translation from "./components/Translation";
+import Transcription from "./components/Transcription";
 
 function App() {
 	const [file, setFile] = useState(null);
@@ -94,7 +96,7 @@ function App() {
 				<Header />
 
 				{output ? (
-					<Information />
+					<Information output={output} />
 				) : loading ? (
 					<Transcribing />
 				) : isAudioAvailable ? (
