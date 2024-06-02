@@ -25,11 +25,11 @@ const FileDisplay = ({
 					Reset
 				</button>
 				<button
-					className="btn p-3 rounded-xl text-black flex items-center gap-2 font-medium"
 					onClick={handleFormSubmission}
+					className="btn p-3 rounded-xl text-black flex items-center gap-2 font-medium"
 				>
 					<p>Transcribe</p>
-					<i class="fa-solid fa-headphones"></i>
+					<i className="fa-solid fa-headphones"></i>
 				</button>
 			</div>
 		</main>

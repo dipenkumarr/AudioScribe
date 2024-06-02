@@ -1,14 +1,16 @@
-import { pipeline } from "@xenova/transformers";
+import { pipeline, env } from "@xenova/transformers";
 import { MessageTypes } from "./presets";
 
-class MyTranslationPipeline {
+env.allowLocalModels = false;
+
+class MyTranscriptionPipeline {
 	static task = "automatic-speech-recognition";
 	static model = "openai/whisper-tiny.en";
 	static instance = null;
 
 	static async getInstance(progress_callback = null) {
 		if (this.instance === null) {
-			this.instance = await pipeline(this.task, this.model, {
+			this.instance = await pipeline(this.task, null, {
 				progress_callback,
 			});
 		}
@@ -17,41 +19,41 @@ class MyTranslationPipeline {
 	}
 }
 
-self.addEventListener("message", async (e) => {
-	const { type, audio } = e.data;
-
+self.addEventListener("message", async (event) => {
+	const { type, audio } = event.data;
 	if (type === MessageTypes.INFERENCE_REQUEST) {
 		await transcribe(audio);
 	}
 });
 
 async function transcribe(audio) {
-	sendLoadingMessage("Loading");
+	sendLoadingMessage("loading");
 
 	let pipeline;
 
 	try {
-		pipeline = await MyTranslationPipeline.getInstance(load_model_callback);
-	} catch (error) {
-		console.log(error.message);
+		pipeline = await MyTranscriptionPipeline.getInstance(
+			load_model_callback
+		);
+	} catch (err) {
+		console.log(err.message);
 	}
 
-	sendLoadingMessage("Success");
+	sendLoadingMessage("success");
 
-	const stride_lenght_s = 5;
-	const generationTracker = new GenerationTracker(pipeline, stride_lenght_s);
+	const stride_length_s = 5;
 
+	const generationTracker = new GenerationTracker(pipeline, stride_length_s);
 	await pipeline(audio, {
 		top_k: 0,
 		do_sample: false,
-		chuck_length: 30,
-		stride_lenght_s,
+		chunk_length: 30,
+		stride_length_s,
 		return_timestamps: true,
 		callback_function:
 			generationTracker.callbackFunction.bind(generationTracker),
-		chuck_callback: generationTracker.chuckCallback.bind(generationTracker),
+		chunk_callback: generationTracker.chunkCallback.bind(generationTracker),
 	});
-
 	generationTracker.sendFinalResult();
 }
 
@@ -127,7 +129,7 @@ class GenerationTracker {
 			}
 		);
 
-		this.processedChunks = chunks.map((chunk, index) => {
+		this.processed_chunks = chunks.map((chunk, index) => {
 			return this.processChunk(chunk, index);
 		});
 
