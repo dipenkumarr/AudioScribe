@@ -7,7 +7,6 @@ const Transcribing = ({ downloading }) => {
 				<h1 className="font-semibold text-4xl sm:text-5xl md:text-6xl">
 					<span className="text-blue-600 bold">File</span>
 				</h1>
-				<p>{!downloading ? "warming up" : "engaging"}</p>
 			</div>
 
 			<div className="flex flex-col gap-2 sm:gap-4 max-w-[500px] mx-auto w-full">
@@ -22,7 +21,7 @@ const Transcribing = ({ downloading }) => {
 						></div>
 					);
 				})} */}
-				<i className="fa-solid fa-gear text-4xl animate-spin"></i>
+				<i className="fa-solid fa-gear text-3xl animate-spin mt-4"></i>
 			</div>
 		</div>
 	);

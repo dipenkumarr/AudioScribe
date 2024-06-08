@@ -26,6 +26,7 @@ function App() {
 	}
 
 	const worker = useRef(null);
+
 	useEffect(() => {
 		if (!worker.current) {
 			worker.current = new Worker(
@@ -96,7 +97,7 @@ function App() {
 				<Header />
 
 				{output ? (
-					<Information output={output} />
+					<Information output={output} finished={finished} />
 				) : loading ? (
 					<Transcribing />
 				) : isAudioAvailable ? (

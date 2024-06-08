@@ -76,10 +76,10 @@ const HomePage = ({ setFile, setAudioStream }) => {
 				Audio<span className="text-blue-600 bold">Scribe.</span>
 			</h1>
 
-			<h3 className="font-medium md:text-lg flex items-center justify-center gap-3">
-				Record <span className="text-blue-400 arrow">&rarr;</span>{" "}
-				Transcribe <span className="text-blue-400 arrow">&rarr;</span>{" "}
-				Translate
+			<h3 className="font-medium md:text-lg flex items-center justify-center gap-3 mt-2">
+				Record/Upload{" "}
+				<span className="text-blue-400 arrow">&rarr;</span> Transcribe{" "}
+				<span className="text-blue-400 arrow">&rarr;</span> Translate
 			</h3>
 
 			<button

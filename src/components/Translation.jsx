@@ -6,6 +6,7 @@ const Translation = ({
 	toLanguage,
 	setToLanguage,
 	translating,
+	generateTranslation,
 }) => {
 	return (
 		<div className="flex flex-col gap-2 w-full mx-auto">
@@ -23,7 +24,7 @@ const Translation = ({
 							<option value={"Select Language"}>
 								Select Language
 							</option>
-							{Object.entries(LANGUAGES).map((key, value) => {
+							{Object.entries(LANGUAGES).map(([key, value]) => {
 								return (
 									<option value={value} key={key}>
 										{key}
@@ -31,18 +32,25 @@ const Translation = ({
 								);
 							})}
 						</select>
-						<button className="btn ml-4 px-4 py-2 font-medium text-base rounded-xl border-2 text-blue-800 border-solid border-blue-500 bg-white duration-200 hover:bg-blue-500 hover:text-white">
+						<button
+							className="btn ml-4 px-4 py-2 font-medium text-base rounded-xl border-2 text-blue-800 border-solid border-blue-500 bg-white duration-200 hover:bg-blue-500 hover:text-white"
+							onClick={generateTranslation}
+						>
 							Translate
 						</button>
 					</div>
 				</div>
 			)}
 
-			{textElement && !translating && <p>{textElement}</p>}
+			{textElement && !translating && (
+				<p className="mt-8 mx-auto flex items-center justify-center">
+					{textElement}
+				</p>
+			)}
 
 			{translating && (
 				<div className="grid place-items-center">
-					<i className="fa-solid da-spinner animate-spin"></i>
+					<i className="fa-solid da-spinner text-4xl animate-spin m-4"></i>
 				</div>
 			)}
 		</div>
